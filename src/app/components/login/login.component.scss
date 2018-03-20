@@ -1,0 +1,62 @@
+.login-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: url('../../../assets/images/second-login-bgc.png') no-repeat center / cover;
+  .login-header {
+    padding: 79px 0px 104px;
+    text-align: center;
+    img {
+      vertical-align: middle;
+    }
+    span {
+      font-size: 48px;
+      color: #333333;
+      font-weight: 500;
+      vertical-align: middle;
+    }
+  }
+  .login-content{
+    position: relative;
+    width: 936px;
+    height: 364px;
+    background: url("../../../assets/images/second-login-botom.png") no-repeat center / cover;
+    .login-content-form {
+      display: inline-block;
+      position: absolute;
+      right: 82px;
+      top: 30px;
+      .form-header{
+        color: #ffffff;
+        padding-bottom: 20px;
+      }
+      .login-form {
+        max-width: 300px;
+      }
+
+      .login-form-forgot {
+        float: right;
+      }
+
+      .login-form-button {
+        width: 100%;
+      }
+    }
+    .login-content-text {
+      display: inline-block;
+      font-size: 36px;
+      color: #ffffff;
+      line-height: 364px;
+      padding-left: 30px;
+    }
+
+  }
+  .login-footer {
+    position: absolute;
+    bottom: 34px;
+    right: 44px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 15px;
+  }
+}

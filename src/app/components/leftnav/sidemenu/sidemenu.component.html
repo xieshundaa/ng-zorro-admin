@@ -1,0 +1,13 @@
+<ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapse">
+    <li nz-submenu *ngFor="let menu of menus;">
+      <span title>
+        <i class="anticon {{menu.icon ? menu.icon : 'anticon-bars'}}"></i>
+        <span class="nav-text">{{menu.name}}</span>
+      </span>
+      <ul>
+        <li nz-menu-item *ngFor="let child of menu.children">
+          <a routerLink="{{child.route ? child.route: '/login'}}">{{child.name}}</a>
+        </li>
+      </ul>
+    </li>
+</ul>

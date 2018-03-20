@@ -1,0 +1,26 @@
+<div class="header">
+  <nz-header style="background: #fff; padding:0;">
+    <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapse" [class.anticon-menu-unfold]="isCollapse"
+       (click)="toggleBtn(isCollapse)"></i>
+    <div class="right-wrapper">
+      <nz-badge [nzCount]="99"><i class="button anticon anticon-bell"></i></nz-badge>
+      <nz-dropdown [nzTrigger]="'click'" [nzPlacement]="'bottomRight'" style="padding-left: 20px;">
+        <a nz-dropdown style="display: inline-block;">
+          <img src="../../../assets/images/user2-160x160.jpg" alt="人物图片" width="35" height="35">
+          超级管理员
+          <i class="anticon anticon-down"></i>
+        </a>
+        <ul nz-menu>
+          <li nz-menu-item>
+            <a routerLink="/login">
+              <i class="anticon anticon-logout"></i>
+              退出
+            </a>
+          </li>
+        </ul>
+      </nz-dropdown>
+    </div>
+
+  </nz-header>
+</div>
+

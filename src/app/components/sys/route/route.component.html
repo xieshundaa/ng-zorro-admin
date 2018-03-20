@@ -1,0 +1,53 @@
+<div nz-row class="sys-route">
+  <div nz-col nzSpan="24" class="clear-fix">
+    <div class="sys-route-left">
+      <button nz-button nzType="primary">
+        <i class="anticon anticon-plus"></i>
+        添加路由
+      </button>
+      <button nz-button nzType="danger" [disabled]="disabledButton">
+        <i class="anticon anticon-close"></i>
+        删除路由
+      </button>
+    </div>
+    <div class="sys-route-right">
+      <nz-input-group nzSearch [nzSuffix]="suffixIconButton">
+        <input type="text" nz-input placeholder="输入关键字搜索">
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" nzSearch><i class="anticon anticon-search"></i></button>
+      </ng-template>
+    </div>
+    <div style="margin-bottom: 16px;">
+      <button nz-button [disabled]="disabledButton" [nzType]="'primary'" [nzLoading]="operating" (click)="operateData()">
+        Reload
+      </button>
+      <span style="margin-left: 8px;" *ngIf="checkedNumber">Selected {{checkedNumber}} items</span>
+    </div>
+    <nz-table
+      #rowSelectionTable
+      [nzData]="dataSet"
+      (nzCurrentPageDataChange)="currentPageDataChange($event)"
+      (nzPageIndexChange)="refreshStatus()"
+      (nzPageSizeChange)="refreshStatus()"
+      nzShowQuickJumper
+      nzShowSizeChanger>
+      <thead>
+      <tr>
+        <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of rowSelectionTable.data">
+        <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event)"></td>
+        <td>{{data.name}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.address}}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
