@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'workspace',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'workspace',
     loadChildren: './components/workspace/workspace.module#WorkspaceModule'
+  },
+  {
+    path: '**',
+    component: LoginComponent
   }
 ];
 

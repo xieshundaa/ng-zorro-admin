@@ -18,34 +18,75 @@
         <button nz-button nzType="primary" nzSearch><i class="anticon anticon-search"></i></button>
       </ng-template>
     </div>
-    <div style="margin-bottom: 16px;">
-      <button nz-button [disabled]="disabledButton" [nzType]="'primary'" [nzLoading]="operating" (click)="operateData()">
-        Reload
-      </button>
-      <span style="margin-left: 8px;" *ngIf="checkedNumber">Selected {{checkedNumber}} items</span>
+    <div style="margin-bottom: 16px;margin-top: 8px;">
+      <!--<button nz-button [disabled]="disabledButton" [nzType]="'primary'" [nzLoading]="operating" (click)="operateData()">-->
+        <!--Reload-->
+      <!--</button>-->
+      <span style="margin-left: 8px;" *ngIf="checkedNumber">选中 {{checkedNumber}} 条</span>
     </div>
     <nz-table
       #rowSelectionTable
       [nzData]="dataSet"
+      [nzTotal]="dataSet.length"
+      [nzShowTotal]="totalTemplate"
+      [nzNoResult]="'无'"
       (nzCurrentPageDataChange)="currentPageDataChange($event)"
       (nzPageIndexChange)="refreshStatus()"
       (nzPageSizeChange)="refreshStatus()"
       nzShowQuickJumper
       nzShowSizeChanger>
-      <thead>
+      <ng-template #totalTemplate let-total style="text-align: left;">一共 {{total}} 条</ng-template>
+      <thead (nzSortChange)="sort($event)">
       <tr>
         <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Address</th>
+        <th nzShowSort nzSortKey="name">Name</th>
+        <th nzShowSort nzSortKey="age">Age</th>
+        <th nzShowSort nzSortKey="address">Address</th>
+        <th nzShowSort nzSortKey="status">status</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let data of rowSelectionTable.data">
         <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event)"></td>
-        <td>{{data.name}}</td>
+        <td>
+          <div class="editable-cell">
+            <div class="editable-cell-text-wrapper">
+              <ng-container *ngIf="!editCache[data.key].edit">
+                {{data.name}}
+                <i class="anticon anticon-edit editable-cell-icon" (click)="startEdit(data.key)"></i>
+              </ng-container>
+              <ng-container *ngIf="editCache[data.key].edit">
+                <input type="text" nz-input [(ngModel)]="editCache[data.key].name">
+                <i class="anticon anticon-check editable-cell-icon-check" (click)="finishEdit(data.key, data)"></i>
+              </ng-container>
+            </div>
+          </div>
+        </td>
+        <!--<td>{{data.name}}</td>-->
         <td>{{data.age}}</td>
         <td>{{data.address}}</td>
+        <td>
+          <div class="editable-cell">
+            <div class="editable-cell-text-wrapper">
+              <ng-container *ngIf="!editCache[data.key].edit">
+                <nz-badge nzStatus="processing" *ngIf="data.status"></nz-badge>
+                <nz-badge nzStatus="error" *ngIf="!data.status"></nz-badge>
+                <i class="anticon anticon-edit editable-cell-icon" (click)="startEdit(data.key)"></i>
+              </ng-container>
+              <ng-container *ngIf="editCache[data.key].edit">
+                <nz-switch nzCheckedChildren="开" nzUnCheckedChildren="关" [(ngModel)]="editCache[data.key].status" (ngModelChange)="editStatus(data.status)"></nz-switch>
+                <i class="anticon anticon-check editable-cell-icon-check" (click)="finishEdit(data.key, data)"></i>
+              </ng-container>
+            </div>
+          </div>
+          <!--<nz-badge nzStatus="processing" *ngIf="data.status"></nz-badge>-->
+          <!--<nz-badge nzStatus="error" *ngIf="!data.status"></nz-badge>-->
+        </td>
+        <td>
+          <!--<a href="javascript:;" (click)="edit(data)">修改</a>-->
+          <a href="javascript:;" (click)="del(data)">删除</a>
+        </td>
       </tr>
       </tbody>
     </nz-table>
