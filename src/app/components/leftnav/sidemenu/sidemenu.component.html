@@ -5,8 +5,8 @@
         <span class="nav-text">{{menu.name}}</span>
       </span>
       <ul>
-        <li nz-menu-item *ngFor="let child of menu.children">
-          <a routerLink="{{child.route ? child.route: '/login'}}">{{child.name}}</a>
+        <li nz-menu-item *ngFor="let child of menu.children" routerLinkActive="ant-menu-item-selected">
+          <a routerLink="{{child.route ? child.route: '/login'}}" >{{child.name}}</a>
         </li>
       </ul>
     </li>

@@ -19,7 +19,7 @@ export class SidemenuComponent implements OnInit {
           icon: 'anticon-setting',
           route: 'sys/route',
         },
-        {name: '应用管理', icon: 'fa-bug', route: 'sys/route', ischild: false},
+        {name: '应用管理', icon: 'fa-bug', route: 'asd/asd', ischild: false},
         {name: '数据字典', icon: 'fa-bus', route: 'role/roletable/page/1'},
         {name: '系统参数', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
         {name: '定时任务', icon: 'fa-send', route: 'permission/permissiontable/page/1'},

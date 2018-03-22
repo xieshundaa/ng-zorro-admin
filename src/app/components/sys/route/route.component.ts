@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-route',
@@ -18,6 +19,7 @@ export class RouteComponent implements OnInit {
   sortKey = null;
   listOfSearchName = [];
   searchAddress: string;
+  syKey = [];
   editCache = {};
   constructor(
               public router: Router
@@ -26,9 +28,9 @@ export class RouteComponent implements OnInit {
   ngOnInit() {
     for (let i = 0; i < 10; i++) {
       this.dataSet.push({
-        key: `${i + 1}`,
+        key: i,
         name   : `Edward King ${i}`,
-        age    : `${i + 1}`,
+        age    : i,
         address: `London, Park Lane no. ${i}`,
         status: true,
         checked: false
@@ -49,18 +51,29 @@ export class RouteComponent implements OnInit {
     this.displayData = $event;
   }
 
-  refreshStatus(): void {
+  refreshStatus(e, val): void {
     const allChecked = this.displayData.every(value => value.checked === true);
     const allUnChecked = this.displayData.every(value => !value.checked);
     this.allChecked = allChecked;
     this.indeterminate = (!allChecked) && (!allUnChecked);
     this.disabledButton = !this.dataSet.some(value => value.checked);
     this.checkedNumber = this.dataSet.filter(value => value.checked).length;
+    console.log(val);
   }
 
-  checkAll(value: boolean): void {
-    this.displayData.forEach(data => data.checked = value);
-    this.refreshStatus();
+  checkAll(value: boolean, dataKey): void {
+    this.syKey = [];
+    this.displayData.forEach((data) =>  data.checked = value);
+    for (let i = 0; i < dataKey.length; i++) {
+      this.syKey.push(dataKey[i].key);
+    }
+    if (value === true) {
+      console.log(this.syKey);
+    } else {
+      this.syKey = [];
+      console.log(this.syKey);
+    }
+    // this.refreshStatus();
   }
   sort(sort: {key: string, value: string}): void {
     this.sortKey = sort.key;
@@ -82,9 +95,9 @@ export class RouteComponent implements OnInit {
     const id = val.key;
     this.router.navigateByUrl('/workspace/sys/route-detail/' + id);
   }
-  del(data) {
-    console.log(data);
-  }
+  // del(data) {
+  //   console.log(data);
+  // }
   // 点击开始修改
   startEdit(key: string): void {
     // console.log(type);
@@ -101,6 +114,16 @@ export class RouteComponent implements OnInit {
     this.dataSet.find(item => item.key === key).name = this.editCache[ key ].name;
     this.dataSet.find(item => item.key === key).status = this.editCache[ key ].status;
     console.log(key, data);
+  }
+
+
+  cancel(): void {
+    // this.message.info('click cancel');
+  }
+
+  confirm(data): void {
+    console.log(data);
+    // this.message.info('click confirm');
   }
   // operateData(): void {
   //   this.operating = true;

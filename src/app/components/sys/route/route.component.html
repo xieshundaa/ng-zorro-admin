@@ -38,7 +38,7 @@
       <ng-template #totalTemplate let-total style="text-align: left;">一共 {{total}} 条</ng-template>
       <thead (nzSortChange)="sort($event)">
       <tr>
-        <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+        <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event, dataSet)"></th>
         <th nzShowSort nzSortKey="name">Name</th>
         <th nzShowSort nzSortKey="age">Age</th>
         <th nzShowSort nzSortKey="address">Address</th>
@@ -48,7 +48,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let data of rowSelectionTable.data">
-        <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event)"></td>
+        <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus($event, data)"></td>
         <td>
           <div class="editable-cell">
             <div class="editable-cell-text-wrapper">
@@ -84,8 +84,10 @@
           <!--<nz-badge nzStatus="error" *ngIf="!data.status"></nz-badge>-->
         </td>
         <td>
+          <nz-popconfirm [nzTitle]="'确定删除吗？'" [nzOkText]="'是'" [nzCancelText]="'否'" (nzOnConfirm)="confirm(data)" (nzOnCancel)="cancel()">
+            <a nz-popconfirm>删除</a>
+          </nz-popconfirm>
           <!--<a href="javascript:;" (click)="edit(data)">修改</a>-->
-          <a href="javascript:;" (click)="del(data)">删除</a>
         </td>
       </tr>
       </tbody>
