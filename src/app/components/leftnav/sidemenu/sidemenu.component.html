@@ -1,5 +1,5 @@
-<ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapse">
-    <li nz-submenu *ngFor="let menu of menus;">
+<ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapse" >
+    <li nz-submenu *ngFor="let menu of menus;" [(nzOpen)]="menu.isOpen" >
       <span title>
         <i class="anticon {{menu.icon ? menu.icon : 'anticon-bars'}}"></i>
         <span class="nav-text">{{menu.name}}</span>

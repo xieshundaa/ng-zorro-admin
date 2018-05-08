@@ -15,21 +15,27 @@ export class SidemenuComponent implements OnInit {
       icon: 'anticon-bars',
       children: [
         {
+          name: '仪表盘',
+          icon: 'anticon-setting',
+          isOpen: true,
+          route: 'dashboard',
+        },
+        {
           name: '自定义路由',
           icon: 'anticon-setting',
+          isOpen: true,
           route: 'sys/route',
         },
-        {name: '应用管理', icon: 'fa-bug', route: 'asd/asd', ischild: false},
-        {name: '数据字典', icon: 'fa-bus', route: 'role/roletable/page/1'},
-        {name: '系统参数', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
-        {name: '定时任务', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
-        {name: '插件管理', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
-        {name: '职工管理', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
-        {name: '单位管理', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
-        {name: '用户管理', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
-        {name: '角色管理', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
-        {name: '菜单管理', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
-        {name: '日志管理', icon: 'fa-send', route: 'permission/permissiontable/page/1'},
+        { name: '数据字典', icon: 'fa-bus', route: 'role/roletable/page/1', isOpen: false },
+        { name: '系统参数', icon: 'fa-send', route: 'permission/permissiontable/page/1' },
+        { name: '定时任务', icon: 'fa-send', route: 'permission/permissiontable/page/1' },
+        { name: '插件管理', icon: 'fa-send', route: 'permission/permissiontable/page/1' },
+        { name: '职工管理', icon: 'fa-send', route: 'permission/permissiontable/page/1' },
+        { name: '单位管理', icon: 'fa-send', route: 'permission/permissiontable/page/1' },
+        { name: '用户管理', icon: 'fa-send', route: 'permission/permissiontable/page/1' },
+        { name: '角色管理', icon: 'fa-send', route: 'permission/permissiontable/page/1' },
+        { name: '菜单管理', icon: 'fa-send', route: 'permission/permissiontable/page/1' },
+        { name: '日志管理', icon: 'fa-send', route: 'permission/permissiontable/page/1' },
       ]
     },
     {
@@ -38,8 +44,8 @@ export class SidemenuComponent implements OnInit {
       isOpen: false,
       icon: 'fa-magic',
       children: [
-        {name: '文章管理', icon: 'fa-mobile', route: 'post/posttable/page/1'},
-        {name: '评论管理', icon: 'fa-minus', route: 'comment/commenttable/page/1'}
+        { name: '文章管理', icon: 'fa-mobile', route: 'post/posttable/page/1' },
+        { name: '评论管理', icon: 'fa-minus', route: 'comment/commenttable/page/1' }
       ]
     },
     {
@@ -48,8 +54,8 @@ export class SidemenuComponent implements OnInit {
       isOpen: false,
       icon: 'fa-wrench',
       children: [
-        {name: '系统状态', icon: 'fa-line-chart', route: 'sys/sysmonitor'},
-        {name: '高德地图', icon: 'fa-map-marker', route: 'map/map'}
+        { name: '系统状态', icon: 'fa-line-chart', route: 'sys/sysmonitor' },
+        { name: '高德地图', icon: 'fa-map-marker', route: 'map/map' }
       ]
     }
   ];

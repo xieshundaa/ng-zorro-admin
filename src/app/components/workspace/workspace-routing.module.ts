@@ -9,12 +9,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'sys',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       },
       {
         path: 'sys',
         loadChildren: '../sys/sys.module#SysModule'
+      },
+      {
+        path: 'dashboard',
+        loadChildren: '../dashboard/dashboard.module#DashboardModule'
       }
     ]
   }

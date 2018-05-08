@@ -1,0 +1,40 @@
+<div nz-row class="dashboard">
+  <div nz-col nzSpan="24">
+    <div nz-col nzSpan="24">
+      <h2>仪表盘</h2>
+    </div>
+    <div nzrow nzGutter="16">
+        <div nz-col nzXs="24" nzSm="24" nzMd="6">
+          <nz-card nzHoverable style="background: #108ee9; text-align:center;">
+            <h3 style="color: #fff;">65535 PV/Day</h3>
+          </nz-card>
+        </div>
+        <div nz-col nzXs="24" nzSm="24" nzMd="6">
+          <nz-card nzHoverable style="background: #00a854; text-align:center;">
+            <h3 style="color: #fff;">123,456K</h3>
+          </nz-card>
+        </div>
+        <div nz-col nzXs="24" nzSm="24" nzMd="6">
+          <nz-card style="background:#f56a00; text-align:center;">
+            <h3 style="color: #fff;">$123,456</h3>
+          </nz-card>
+        </div>
+        <div nz-col nzXs="24" nzSm="24" nzMd="6">
+          <nz-card style="background: #f5317f; text-align:center;">
+            <h3 style="color: #fff;">123,456</h3>
+          </nz-card>
+        </div>
+    </div>
+    <div nz-row nzGutter="16">
+      <div nzSpan="24">
+        <div nz-col nzXs="12">
+          <div echarts [options]="Lineoptions" class="demo-chart"></div>
+        </div>
+        <div nz-col nzXs="12">
+          <div echarts [options]="chartOptions" class="demo-chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
